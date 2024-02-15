@@ -119,7 +119,8 @@ def _find_vmedia_device_by_labels(labels):
     candidates = []
     try:
         #add a small delay to allow for the device to be detected
-        for _ in range(10):
+        for i in range(10):
+            _early_log('Checking for virtual media device. Attempt %d', i)
             lsblk_output, _e = execute('lsblk', '-p', '-P', '-oKNAME,LABEL')
             for device in ironic_utils.parse_device_tags(lsblk_output):
                 for label in labels:
