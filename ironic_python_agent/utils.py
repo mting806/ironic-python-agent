@@ -285,9 +285,10 @@ def _check_vmedia_device(vmedia_device_file):
                 # Fujitsu hardware is more uncertian, but appears to be similar
                 # in use of a USB pass-through
                 # http://linux-hardware.org/index.php?probe=cca9eab7fe&log=dmesg
-                if device['SIZE'] != "" and int(device['SIZE']) < 4294967296:
+                if device['SIZE'] != "" and int(device['SIZE']) < 14294967296:
                     # Device is a usb backed block device which is smaller
                     # than 4 GiB
+                    # update this to 14 GiB, as some devices are larger
                     return True
                 else:
                     _early_log('Device %s appears to not qualify as virtual '
